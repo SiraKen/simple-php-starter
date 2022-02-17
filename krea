@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__.'/vendor/autoload.php';
+
+/*
+|--------------------------------------------------------------------------
+| Krea
+| Command-line tool
+|--------------------------------------------------------------------------
+|
+| 
+|
+*/
+
+$Command = new App\Console\Command;
+
+// args
+$action = isset($argv[1]) ? $argv[1] : null;
+$arg1 = isset($argv[2]) ? $argv[2] : null;
+$arg2 = isset($argv[3]) ? $argv[3] : null;
+$arg3 = isset($argv[4]) ? $argv[4] : null;
+
+switch ($action)
+{
+  case 'dev': $Command->server($arg1);
+    break;
+  case 'make': $Command->make($arg1, $arg2);
+    break;
+  case 'git': $Command->git($arg1, $arg2);
+    break;
+  case 'help': $Command->help();
+    break;
+  case 'version':
+  case null: $Command->version();
+    break;
+  default: break;
+}
+
+exit;
